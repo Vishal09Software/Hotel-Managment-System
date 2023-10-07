@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Add Booking </h4>
-                            <a href="{{ url('/booking') }}">
+                            <a href="{{ url('admin/booking') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">View All</button>
                             </a>
                             @if (session('success'))
@@ -16,7 +16,7 @@
 
                             @if ($errors->any())
                             @endif
-                            <form action="{{ url('/booking') }}" method="post" enctype="multipart/form-data"
+                            <form action="{{ url('admin/booking') }}" method="post" enctype="multipart/form-data"
                                 class="forms-sample">
                                 @csrf
                                 <div class="form-group">
@@ -99,7 +99,7 @@
             $(".checkin-date").on('blur',function(){
                 var _checkindate = $(this).val();
                 $.ajax({
-                    url : "{{url('booking')}}/avilable-rooms/" +_checkindate,
+                    url : "{{url('admin/booking')}}/avilable-rooms/" +_checkindate,
                     dataType: 'json',
                     beforeSend:function(){
                         $(".room-list").html('<option>----Loading----</option>');
@@ -108,13 +108,14 @@
                     success: function(res){
                         var _html = '';
                         $.each(res.data,function(index,row){
-                            _html += '<option value="'+row.id+'">'+row.title+'</option>';
+                            _html += '<option value=" ' + row.room.id + ' ">'+row.room.title+ '-' + row.roomtype.title+'</option>';
+
                         });
 
                         $(".room-list").html(_html);
                     }
 
-                })
+                });
             });
         });
     </script>

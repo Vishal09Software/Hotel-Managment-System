@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Staff Table</h4>
-                            <a href="{{ url('/staff/create') }}">
+                            <a href="{{ url('admin/staff/create') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">Add New</button>
                             </a>
                             @if (session('success'))
@@ -72,19 +72,19 @@
 
 
                                                     <td>
-                                                        <a href="{{ url('/staff/' . $staff->id) }}"
+                                                        <a href="{{ url('admin/staff/' . $staff->id) }}"
                                                             class="btn btn-info btn-sm">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                                         </a>
-                                                        <a href="{{ url('/staff/' . $staff->id . '/edit') }}"
+                                                        <a href="{{ url('admin/staff/' . $staff->id . '/edit') }}"
                                                             class="btn btn-primary btn-sm">
                                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                                         </a>
-                                                        <a href="{{ url('/staff/payments/' . $staff->id) }}"
+                                                        <a href="{{ url('admin/staff/payments/' . $staff->id) }}"
                                                             class="btn btn-dark btn-sm">
                                                             <i class="fa fa-credit-card" aria-hidden="true"></i>
                                                         </a>
-                                                        <a href="{{ url('/staff/' . $staff->id . '/delete') }}"
+                                                        <a href="{{ url('admin/staff/' . $staff->id . '/delete') }}"
                                                             class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </a>

@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Bookings Room Table</h4>
-                            <a href="{{ url('/booking/create') }}">
+                            <a href="{{ url('admin/booking/create') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">Add New</button>
                             </a>
                             @if (session('success'))
@@ -75,15 +75,15 @@
                                                         {{ $booking->total_children }}
                                                     </td>
                                                     <td>
-                                                        <a href="{{ url('/booking/' . $booking->id) }}"
+                                                        <a href="{{ url('admin/booking/' . $booking->id) }}"
                                                             class="btn btn-info btn-sm">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                                         </a>
-                                                        <a href="{{ url('/booking/' . $booking->id . '/edit') }}"
+                                                        <a href="{{ url('admin/booking/' . $booking->id . '/edit') }}"
                                                             class="btn btn-primary btn-sm">
                                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                                         </a>
-                                                        <a href="{{ url('/booking/' . $booking->id . '/delete') }}"
+                                                        <a href="{{ url('admin/booking/' . $booking->id . '/delete') }}"
                                                             class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </a>

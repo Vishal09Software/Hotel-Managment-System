@@ -56,8 +56,13 @@ class CustomerController extends Controller
             $file->move('backend/images/customers', $filename);
             $insert->images = $filename;
         }
-    $insert->save();
-    return  redirect('/customers/create')->with('success' , 'Data has been added.');
+        $insert->save();
+        $ref = $request->ref;
+        if($ref == 'front')
+        {
+    return  redirect('/register')->with('success' , 'Data has been saved.');
+        }
+    return  redirect('admin/customers/create')->with('success' , 'Data has been added.');
     }
 
     /**
@@ -102,7 +107,7 @@ class CustomerController extends Controller
 
         }
         $update->save();
-        return  redirect('/customers/' .$id. '/edit')->with('success' , 'Data has been update.');
+        return  redirect('admin/customers/' .$id. '/edit')->with('success' , 'Data has been update.');
     }
 
 
@@ -120,6 +125,45 @@ class CustomerController extends Controller
             Log::error('File not found: ' . $destination);
         }
         $delete->delete();
-        return  redirect('/customers')->with('success' , 'Data has been delete.');
+        return  redirect('admin/customers')->with('success' , 'Data has been delete.');
+    }
+
+
+    //login
+    public function login(){
+        return view('frontend.login');
+    }
+
+    //login check
+    public function customer_login(Request $request) {
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        // Find a customer with the provided email
+        $customer = Customer::where('email', $email)->first();
+
+        if ($customer) {
+            if (Hash::check($password, $customer->password)) {
+                session(['customerlogin' => true, 'data' => $customer]);
+                return redirect('/');
+            } else {
+                return redirect('login/')->with('error', 'Invalid email and password.');
+            }
+        } else {
+            return redirect('login/')->with('error', 'Invalid email and password.');
+        }
+    }
+
+
+    //register
+    public function register(){
+        return view('frontend.register');
+    }
+
+    //logout
+    public function logout(){
+        session()->forget(['customerlogin','customer']);
+        return redirect('login/');
+
     }
 }

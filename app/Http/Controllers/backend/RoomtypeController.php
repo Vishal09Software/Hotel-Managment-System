@@ -56,7 +56,7 @@ class RoomtypeController extends Controller
             $roomTypeImage->save();
         }
     }
-    return  redirect('/roomtype/create')->with('success' , 'Data has been added.');
+    return  redirect('admin/roomtype/create')->with('success' , 'Data has been added.');
      }
 
 
@@ -103,7 +103,7 @@ class RoomtypeController extends Controller
         }
     }
     }
-    return  redirect('/roomtype/' .$id. '/edit')->with('success' , 'Data has been update.');
+    return  redirect('admin/roomtype/' .$id. '/edit')->with('success' , 'Data has been update.');
     }
 
     /**
@@ -113,7 +113,7 @@ class RoomtypeController extends Controller
     {
     $delete = RoomType::find($id);
     $delete->delete();
-    return  redirect('/roomtype')->with('success' , 'Data has been delete.');
+    return  redirect('admin/roomtype')->with('success' , 'Data has been delete.');
     }
 
     public function destroy_img(string $id)

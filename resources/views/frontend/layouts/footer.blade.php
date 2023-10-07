@@ -80,6 +80,8 @@
 <script src="{{ url('frontend/js/datepicker.js')}}"></script>
 <script src="{{ url('frontend/js/smooth-scroll.min.js')}}"></script>
 <script src="{{ url('frontend/js/custom.js')}}"></script>
+
+@yield('scripts')
 </body>
 
 <!-- Mirrored from duruthemes.com/demo/html/cappa/demo1-light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 29 Sep 2023 02:42:59 GMT -->

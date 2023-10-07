@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Department Table</h4>
-                            <a href="{{ url('/department/create') }}">
+                            <a href="{{ url('admin/department/create') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">Add New</button>
                             </a>
                             @if (session('success'))
@@ -50,15 +50,15 @@
                                                     </td>
 
                                                     <td>
-                                                        <a href="{{ url('/department/' . $department->id) }}"
+                                                        <a href="{{ url('admin/department/' . $department->id) }}"
                                                             class="btn btn-info btn-sm">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                                         </a>
-                                                        <a href="{{ url('/department/' . $department->id . '/edit') }}"
+                                                        <a href="{{ url('admin/department/' . $department->id . '/edit') }}"
                                                             class="btn btn-primary btn-sm">
                                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                                         </a>
-                                                        <a href="{{ url('/department/' . $department->id . '/delete') }}"
+                                                        <a href="{{ url('admin/department/' . $department->id . '/delete') }}"
                                                             class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </a>

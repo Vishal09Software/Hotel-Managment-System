@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Edit {{$data->title}}</h4>
-                            <a href="{{url('/rooms')}}" >
+                            <a href="{{url('admin/rooms')}}" >
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">View All</button>
                             </a>
                             @if (session('success'))
@@ -16,7 +16,7 @@
 
                             @if ($errors->any())
                             @endif
-                            <form action="{{url('/rooms/'.$data->id)}}" method="post" class="forms-sample">
+                            <form action="{{url('admin/rooms/'.$data->id)}}" method="post" class="forms-sample">
                                 @csrf
                                 @method('put')
                                 <div class="form-group">

@@ -10,6 +10,12 @@ use App\Http\Controllers\backend\StaffController;
 use App\Http\Controllers\backend\AdminController;
 use App\Http\Controllers\backend\BookingController;
 
+
+//frontend Controller
+use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\frontend\CustomersController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,12 +27,20 @@ use App\Http\Controllers\backend\BookingController;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
 
 
-Route::middleware(['auth', 'verified','prevent-back-history'])->group(function() {
+Route::get('/',[HomeController::class,'home']);
+Route::get('/login',[CustomerController::class,'login']);
+Route::post('customer/login',[CustomerController::class,'customer_login']);
+Route::get('/register',[CustomerController::class,'register']);
+Route::get('/logout',[CustomerController::class,'logout']);
+
+Route::get('/booking',[BookingController::class,'bookings']);
+
+
+
+
+Route::prefix('admin')->middleware(['auth', 'verified','prevent-back-history'])->group(function() {
 
     //Admin Route
     Route::get('/dashboard', function () {

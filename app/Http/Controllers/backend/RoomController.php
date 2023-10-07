@@ -43,7 +43,7 @@ class RoomController extends Controller
     $insert->title = $request->input('title');
     $insert->room_type_id = $request->input('room_type_id');
     $insert->save();
-    return  redirect('/rooms/create')->with('success' , 'Data has been added.');
+    return  redirect('admin/rooms/create')->with('success' , 'Data has been added.');
     }
 
     /**
@@ -74,7 +74,7 @@ class RoomController extends Controller
     $update->title = $request->input('title');
     $update->room_type_id = $request->input('room_type_id');
     $update->save();
-    return  redirect('/rooms/' .$id. '/edit')->with('success' , 'Data has been update.');
+    return  redirect('admin/rooms/' .$id. '/edit')->with('success' , 'Data has been update.');
     }
 
     /**
@@ -84,7 +84,7 @@ class RoomController extends Controller
     {
     $delete = Room::find($id);
     $delete->delete();
-    return  redirect('/rooms')->with('success' , 'Data has been delete.');
+    return  redirect('admin/rooms')->with('success' , 'Data has been delete.');
 
 
     }

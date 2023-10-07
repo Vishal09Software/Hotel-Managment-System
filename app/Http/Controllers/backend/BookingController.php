@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Booking;
 use App\Models\Customer;
 use App\Models\Room;
+use App\Models\RoomType;
 
 
 class BookingController extends Controller
@@ -29,7 +30,6 @@ class BookingController extends Controller
         $customers = Customer::all();
         $rooms = Room::all();
         return view('backend.bookings.create',['customers'=>$customers,'rooms'=>$rooms]);
-
     }
 
     /**
@@ -53,16 +53,21 @@ class BookingController extends Controller
     $insert->total_adults = $request->input('total_adults');
     $insert->total_children = $request->input('total_children');
     $insert->save();
-    return  redirect('/booking/create')->with('success' , 'Data has been added.');
+
+    if($request->ref == 'front')
+    {
+    return  redirect('/')->with('success' , 'Booking Successfull.');
     }
+    return  redirect('admin/booking/create')->with('success' , 'Data has been added.');
+    }
+
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $data= Booking::find($id);
-        return view('backend.bookings.show',['data'=>$data]);
+
     }
 
     /**
@@ -70,35 +75,14 @@ class BookingController extends Controller
      */
     public function edit(string $id)
     {
-        $data= Booking::find($id);
-        return view('backend.bookings.edit',['data'=>$data]);
-    }
 
+    }
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        $update = Booking::find($id);
-        $update->full_name = $request->input('full_name');
-        $update->email = $request->input('email');
-        $update->address = $request->input('address');
-        $update->mobile = $request->input('mobile');
-        $update->password = Hash::make($request->input('password'));
-        if ($request->hasFile('images')) {
-            $destination = 'backend/images/Bookings/';
-            if (File::exists($destination . $update->images)) {
-                File::delete($destination . $update->images);
-            }
-            $file = $request->file('images');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move(public_path($destination), $filename);
-            $update->images = $filename;
 
-        }
-        $update->save();
-        return  redirect('/booking/' .$id. '/edit')->with('success' , 'Data has been update.');
     }
 
     /**
@@ -106,9 +90,7 @@ class BookingController extends Controller
      */
     public function destroy(string $id)
     {
-        $delete = Booking::find($id);
-        $delete->delete();
-        return  redirect('/booking')->with('success' , 'Data has been delete.');
+
     }
 
 
@@ -116,6 +98,22 @@ class BookingController extends Controller
     public function avilable_rooms(Request $request ,$checkin_date){
         $arooms = DB::select("select * from rooms where id not in
         (select room_id from bookings where '$checkin_date' between checkout_date and '$checkin_date'  )");
-        return  response()->json(['data'=>$arooms]);
+
+
+        $data = [];
+        foreach ($arooms as $room) {
+            $roomType = RoomType::find($room->room_type_id);
+
+            if ($roomType) {
+                $data[] = ['room' => $room, 'roomtype' => $roomType];
+            }
+        }
+
+        return response()->json(['data'=>$data]);
+    }
+
+    public function bookings()
+    {
+        return view('frontend.index');
     }
 }

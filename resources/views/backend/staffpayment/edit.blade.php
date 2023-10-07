@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Edit {{ $data->full_name }}</h4>
-                            <a href="{{ url('/staff') }}">
+                            <a href="{{ url('admin/staff') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">View All</button>
                             </a>
                             @if (session('success'))
@@ -16,7 +16,7 @@
 
                             @if ($errors->any())
                             @endif
-                            <form action="{{ url('/staff/' . $data->id) }}" method="post" class="forms-sample"
+                            <form action="{{ url('admin/staff/' . $data->id) }}" method="post" class="forms-sample"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('put')

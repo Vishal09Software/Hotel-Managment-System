@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">{{$data->title}}</h4>
-                            <a href="{{ url('/roomtype') }}">
+                            <a href="{{ url('admin/department') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">View All</button>
                             </a>
                             <form class="forms-sample">

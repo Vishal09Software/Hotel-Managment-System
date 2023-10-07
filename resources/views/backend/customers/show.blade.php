@@ -6,7 +6,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <h4 class="card-title">{{$data->full_name}}</h4>
-                            <a href="{{ url('/customers') }}">
+                            <a href="{{ url('admin/customers') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">View All</button>
                             </a>
                         <div class="card-body">

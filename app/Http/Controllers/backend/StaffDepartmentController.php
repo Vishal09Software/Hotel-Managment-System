@@ -41,7 +41,7 @@ class StaffDepartmentController extends Controller
     $insert->title = $request->input('title');
     $insert->details = $request->input('details');
     $insert->save();
-    return  redirect('/department/create')->with('success' , 'Data has been added.');
+    return  redirect('admin/department/create')->with('success' , 'Data has been added.');
     }
 
     /**
@@ -71,7 +71,7 @@ class StaffDepartmentController extends Controller
         $update->title = $request->input('title');
         $update->details = $request->input('details');
         $update->save();
-        return  redirect('/department/' .$id. '/edit')->with('success' , 'Data has been update.');
+        return  redirect('admin/department/' .$id. '/edit')->with('success' , 'Data has been update.');
     }
 
 
@@ -83,6 +83,6 @@ class StaffDepartmentController extends Controller
     {
         $delete = Department::find($id);
         $delete->delete();
-        return  redirect('/department')->with('success' , 'Data has been delete.');
+        return  redirect('admin/department')->with('success' , 'Data has been delete.');
     }
 }

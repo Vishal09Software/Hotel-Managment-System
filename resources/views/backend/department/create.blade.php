@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Add Department </h4>
-                            <a href="{{ url('/department') }}">
+                            <a href="{{ url('admin/department') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">View All</button>
                             </a>
                             @if (session('success'))
@@ -16,7 +16,7 @@
 
                             @if ($errors->any())
                             @endif
-                            <form action="{{url('/department') }}" method="post" enctype="multipart/form-data" class="forms-sample">
+                            <form action="{{url('admin/department') }}" method="post" enctype="multipart/form-data" class="forms-sample">
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">Title</label>

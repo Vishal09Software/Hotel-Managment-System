@@ -35,8 +35,8 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{{ url('backend/images/logo.svg')}}" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{ url('backend/images/logo-mini.svg')}}" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href="{{url('admin/dashboard/')}}"><img src="{{ url('backend/images/logo.svg')}}" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="{{url('admin/dashboard/')}}"><img src="{{ url('backend/images/logo-mini.svg')}}" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -108,7 +108,7 @@
               <img src="{{ url('backend/images/faces/face28.jpg')}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="{{url('/logout')}}">
+              <a class="dropdown-item" href="{{url('admin/logout/')}}">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -301,7 +301,7 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="{{url('/dashboard')}}">
+            <a class="nav-link" href="{{url('admin/dashboard')}}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
@@ -314,8 +314,8 @@
             </a>
             <div class="collapse" id="roomtype">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('/roomtype/create/')}}">Add New</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('/roomtype')}}">View All</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/roomtype/create/')}}">Add New</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/roomtype')}}">View All</a></li>
               </ul>
             </div>
           </li>
@@ -328,8 +328,8 @@
             </a>
             <div class="collapse" id="room">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('/rooms/create/')}}">Add New</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('/rooms')}}">View All</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/rooms/create/')}}">Add New</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/rooms')}}">View All</a></li>
               </ul>
             </div>
           </li>
@@ -342,8 +342,8 @@
             </a>
             <div class="collapse" id="customers">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('/customers/create/')}}">Add New</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('/customers')}}">View All</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/customers/create/')}}">Add New</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/customers')}}">View All</a></li>
               </ul>
             </div>
           </li>
@@ -356,8 +356,8 @@
             </a>
             <div class="collapse" id="department">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('/department/create/')}}">Add New</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('/department')}}">View All</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/department/create/')}}">Add New</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/department')}}">View All</a></li>
               </ul>
             </div>
           </li>
@@ -370,8 +370,8 @@
             </a>
             <div class="collapse" id="staff">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('/staff/create/')}}">Add New</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('/staff')}}">View All</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/staff/create/')}}">Add New</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/staff')}}">View All</a></li>
               </ul>
             </div>
           </li>
@@ -384,8 +384,8 @@
             </a>
             <div class="collapse" id="booking">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('/booking/create/')}}">Add New</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('/booking')}}">View All</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/booking/create/')}}">Add New</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/booking')}}">View All</a></li>
               </ul>
             </div>
           </li>

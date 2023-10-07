@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Room Table</h4>
-                            <a href="{{url('/rooms/create')}}" >
+                            <a href="{{url('admin/rooms/create')}}" >
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">Add New</button>
                             </a>
                             @if (session('success'))
@@ -47,13 +47,13 @@
                                             </td>
 
                                             <td>
-                                                <a href="{{url('/rooms/'.$room->id)}}" class="btn btn-info btn-sm">
+                                                <a href="{{url('admin/rooms/'.$room->id)}}" class="btn btn-info btn-sm">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{url('/rooms/'.$room->id. '/edit')}}" class="btn btn-primary btn-sm">
+                                                <a href="{{url('admin/rooms/'.$room->id. '/edit')}}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{url('/rooms/'.$room->id.'/delete')}}" class="btn btn-danger btn-sm">
+                                                <a href="{{url('admin/rooms/'.$room->id.'/delete')}}" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
                                             </td>

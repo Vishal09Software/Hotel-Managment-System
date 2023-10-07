@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">{{ $data->customer->full_name }}</h4>
-                            <a href="{{ url('/booking') }}">
+                            <a href="{{ url('admin/booking') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">View All</button>
                             </a>
                             <div class="card-body">

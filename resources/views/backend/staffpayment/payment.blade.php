@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">{{$staff->full_name}} Payments</h4>
-                            <a href="{{ url('/staff/payment/' . $staff_id . '/add') }}">
+                            <a href="{{ url('admin/staff/payment/' . $staff_id . '/add') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">Add New Payment</button>
                             </a>
                             @if (session('success'))
@@ -44,7 +44,7 @@
                                                         {{ $payment->payment_date }}
                                                     </td>
                                                     <td>
-                                                        <a href="{{ url('/staff/payment/' . $payment->id . '/' .$staff_id. '/delete') }}"
+                                                        <a href="{{ url('admin/staff/payment/' . $payment->id . '/' .$staff_id. '/delete') }}"
                                                             class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </a>
