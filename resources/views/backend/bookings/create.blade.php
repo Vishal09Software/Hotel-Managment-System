@@ -6,7 +6,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Add Customer </h4>
+                            <h4 class="card-title">Add Booking </h4>
                             <a href="{{ url('/booking') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">View All</button>
                             </a>
@@ -33,17 +33,7 @@
                                         {{ $message }}
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Aviables Rooms </label>
-                                    <select class="form-control" name="room_id" id="">
 
-                                    </select>
-                                </div>
-                                <div style="color: red">
-                                    @error('room_id')
-                                        {{ $message }}
-                                    @enderror
-                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">Checkin date</label>
                                     <input type="date" name="checkin_date" class="form-control checkin-date">
@@ -59,6 +49,17 @@
                                 </div>
                                 <div style="color: red">
                                     @error('checkout_date')
+                                        {{ $message }}
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Aviables Rooms </label>
+                                    <select class="form-control room-list" name="room_id" id="">
+
+                                    </select>
+                                </div>
+                                <div style="color: red">
+                                    @error('room_id')
                                         {{ $message }}
                                     @enderror
                                 </div>
@@ -92,12 +93,28 @@
         </div>
     </div>
 
-@section('scripts')
+    @section('scripts')
     <script type="text/javascript">
         $(document).ready(function(){
             $(".checkin-date").on('blur',function(){
                 var _checkindate = $(this).val();
-                console.log(_checkindate);
+                $.ajax({
+                    url : "{{url('booking')}}/avilable-rooms/" +_checkindate,
+                    dataType: 'json',
+                    beforeSend:function(){
+                        $(".room-list").html('<option>----Loading----</option>');
+
+                    },
+                    success: function(res){
+                        var _html = '';
+                        $.each(res.data,function(index,row){
+                            _html += '<option value="'+row.id+'">'+row.title+'</option>';
+                        });
+
+                        $(".room-list").html(_html);
+                    }
+
+                })
             });
         });
     </script>

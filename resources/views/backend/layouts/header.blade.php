@@ -105,13 +105,9 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="images/faces/face28.jpg" alt="profile"/>
+              <img src="{{ url('backend/images/faces/face28.jpg')}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
-                Settings
-              </a>
               <a class="dropdown-item" href="{{url('/logout')}}">
                 <i class="ti-power-off text-primary"></i>
                 Logout
@@ -394,7 +390,7 @@
             </div>
           </li>
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="icon-layout menu-icon"></i>
               <span class="menu-title">UI Elements</span>
@@ -487,7 +483,7 @@
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>
       <!-- partial -->

@@ -21,16 +21,24 @@
                                                 #
                                             </th>
                                             <th>
-                                                Name
+                                                Customer Name
                                             </th>
                                             <th>
-                                                Email
+                                                Room No
                                             </th>
                                             <th>
-                                                Mobile
+                                                Checkin Date
                                             </th>
                                             <th>
-                                                Images
+                                                Checkout Date
+                                            </th>
+
+                                            <th>
+                                                Adults
+                                            </th>
+
+                                            <th>
+                                                Children
                                             </th>
                                             <th>
                                                 Action
@@ -47,22 +55,25 @@
                                                         {{ $booking->id }}
                                                     </td>
                                                     <td>
-                                                        {{ $booking->full_name }}
+                                                        {{ $booking->customer->full_name }}
                                                     </td>
 
                                                     <td>
-                                                        {{ $booking->email }}
+                                                        {{ $booking->room->title }}
                                                     </td>
 
                                                     <td>
-                                                        {{ $booking->mobile }}
+                                                        {{ $booking->checkin_date }}
                                                     </td>
-
                                                     <td>
-                                                        <img src="{{ asset('backend/images/booking/' . $booking->images) }}" alt="img" width="50px" height="50px">
-
+                                                        {{ $booking->checkout_date }}
                                                     </td>
-
+                                                    <td>
+                                                        {{ $booking->total_adults }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $booking->total_children }}
+                                                    </td>
                                                     <td>
                                                         <a href="{{ url('/booking/' . $booking->id) }}"
                                                             class="btn btn-info btn-sm">

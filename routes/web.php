@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\RoomtypeController;
 use App\Http\Controllers\backend\RoomController;
@@ -21,61 +22,56 @@ use App\Http\Controllers\backend\BookingController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-//Admin Route
-Route::get('/dashboard', function () {
-    return view('backend.index');
+    return view('frontend.index');
 });
 
 
-//RoomType Route
-Route::resource('/roomtype',RoomtypeController::class);
-Route::get('/roomtype/{id}/delete',[RoomtypeController::class,'destroy']);
+Route::middleware(['auth', 'verified','prevent-back-history'])->group(function() {
 
-//Roomes Images Delete
-Route::get('/roomtypeimage/{id}/delete',[RoomtypeController::class,'destroy_img']);
+    //Admin Route
+    Route::get('/dashboard', function () {
+        return view('backend.index');
+    });
 
+    //RoomType Route
+    Route::resource('/roomtype',RoomtypeController::class);
+    Route::get('/roomtype/{id}/delete',[RoomtypeController::class,'destroy']);
 
-//Room Route
-Route::resource('/rooms',RoomController::class);
-Route::get('/rooms/{id}/delete',[RoomController::class,'destroy']);
+    //Roomes Images Delete
+    Route::get('/roomtypeimage/{id}/delete',[RoomtypeController::class,'destroy_img']);
 
-//Customer Route
-Route::resource('/customers',CustomerController::class);
-Route::get('/customers/{id}/delete',[CustomerController::class,'destroy']);
+    //Room Route
+    Route::resource('/rooms',RoomController::class);
+    Route::get('/rooms/{id}/delete',[RoomController::class,'destroy']);
 
-//Department Route
-Route::resource('/department',StaffDepartmentController::class);
-Route::get('/department/{id}/delete',[StaffDepartmentController::class,'destroy']);
+    //Customer Route
+    Route::resource('/customers',CustomerController::class);
+    Route::get('/customers/{id}/delete',[CustomerController::class,'destroy']);
 
-//Staff Route
-Route::resource('/staff',StaffController::class);
-Route::get('/staff/{id}/delete',[StaffController::class,'destroy']);
+    //Department Route
+    Route::resource('/department',StaffDepartmentController::class);
+    Route::get('/department/{id}/delete',[StaffDepartmentController::class,'destroy']);
 
-//Staff Payments Route
-Route::get('/staff/payments/{id}',[StaffController::class,'all_payments']);
-Route::get('/staff/payment/{id}/add',[StaffController::class,'add_payment']);
-Route::post('/staff/payment/{id}',[StaffController::class,'save_payment']);
-Route::get('/staff/payment/{id}/{staff_id}/delete', [StaffController::class, 'delete_payment']);
+    //Staff Route
+    Route::resource('/staff',StaffController::class);
+    Route::get('/staff/{id}/delete',[StaffController::class,'destroy']);
 
-
-//Bookings Route
-Route::resource('/booking',BookingController::class);
-Route::get('/booking/{id}/delete',[BookingController::class,'destroy']);
-
-
-
+    //Staff Payments Route
+    Route::get('/staff/payments/{id}',[StaffController::class,'all_payments']);
+    Route::get('/staff/payment/{id}/add',[StaffController::class,'add_payment']);
+    Route::post('/staff/payment/{id}',[StaffController::class,'save_payment']);
+    Route::get('/staff/payment/{id}/{staff_id}/delete', [StaffController::class, 'delete_payment']);
 
 
+    //Bookings Route
+    Route::resource('/booking',BookingController::class);
+    Route::get('/booking/avilable-rooms/{checkin_data}',[BookingController::class,'avilable_rooms']);
+    Route::get('/booking/{id}/delete',[BookingController::class,'destroy']);
 
 
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-
-
-//Admin Login Route
-Route::get('/login',[AdminController::class,'login']);
-Route::post('/login',[AdminController::class,'check_login']);
-Route::get('/logout',[AdminController::class,'logout']);
-
+require __DIR__.'/auth.php';

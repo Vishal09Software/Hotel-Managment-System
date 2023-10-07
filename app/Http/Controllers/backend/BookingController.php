@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Booking;
 use App\Models\Customer;
 use App\Models\Room;
@@ -37,27 +38,20 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'full_name'=>'required',
-            'email' => 'required',
-            'address'=>'required',
-            'mobile' => 'required|regex:/^[0-9]{10}$/',
-            'images'=>'required',
-            'password'=>'required',
+            'customer_id'=>'required',
+            'room_id' => 'required',
+            'checkin_date'=>'required',
+            'checkout_date'=>'required',
+            'total_adults'=>'required',
+            'total_children'=>'required',
     ]);
     $insert = new Booking;
-    $insert->full_name = $request->input('full_name');
-    $insert->email = $request->input('email');
-    $insert->address = $request->input('address');
-    $insert->mobile = $request->input('mobile');
-    $insert->password = Hash::make($request->input('password'));
-    if ($request->hasFile('images'))
-        {
-            $file = $request->file('images');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('backend/images/Bookings', $filename);
-            $insert->images = $filename;
-        }
+    $insert->customer_id = $request->input('customer_id');
+    $insert->room_id = $request->input('room_id');
+    $insert->checkin_date = $request->input('checkin_date');
+    $insert->checkout_date = $request->input('checkout_date');
+    $insert->total_adults = $request->input('total_adults');
+    $insert->total_children = $request->input('total_children');
     $insert->save();
     return  redirect('/booking/create')->with('success' , 'Data has been added.');
     }
@@ -115,5 +109,13 @@ class BookingController extends Controller
         $delete = Booking::find($id);
         $delete->delete();
         return  redirect('/booking')->with('success' , 'Data has been delete.');
+    }
+
+
+    //check rooms avilables
+    public function avilable_rooms(Request $request ,$checkin_date){
+        $arooms = DB::select("select * from rooms where id not in
+        (select room_id from bookings where '$checkin_date' between checkout_date and '$checkin_date'  )");
+        return  response()->json(['data'=>$arooms]);
     }
 }
