@@ -14,7 +14,6 @@ use App\Http\Controllers\backend\ServiceController;
 
 //frontend Controller
 use App\Http\Controllers\frontend\HomeController;
-use App\Http\Controllers\frontend\CustomersController;
 
 
 /*
@@ -36,7 +35,6 @@ Route::get('/service',[HomeController::class,'service']);
 Route::get('/facilities',[HomeController::class,'facilities']);
 Route::get('/about',[HomeController::class,'aboutus']);
 Route::get('/contact',[HomeController::class,'contact']);
-
 Route::post('/contact',[HomeController::class,'save_contact']);
 
 Route::get('/service-details/{id}/',[HomeController::class,'service_details']);
