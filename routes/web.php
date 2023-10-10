@@ -9,6 +9,7 @@ use App\Http\Controllers\backend\StaffDepartmentController;
 use App\Http\Controllers\backend\StaffController;
 use App\Http\Controllers\backend\AdminController;
 use App\Http\Controllers\backend\BookingController;
+use App\Http\Controllers\backend\ServiceController;
 
 
 //frontend Controller
@@ -30,12 +31,25 @@ use App\Http\Controllers\frontend\CustomersController;
 
 
 Route::get('/',[HomeController::class,'home']);
+Route::get('/rooms',[HomeController::class,'rooms']);
+Route::get('/service',[HomeController::class,'service']);
+Route::get('/facilities',[HomeController::class,'facilities']);
+Route::get('/about',[HomeController::class,'aboutus']);
+Route::get('/contact',[HomeController::class,'contact']);
+
+Route::post('/contact',[HomeController::class,'save_contact']);
+
+Route::get('/service-details/{id}/',[HomeController::class,'service_details']);
+Route::get('/room-details/{id}/',[HomeController::class,'room_details']);
+
+
+
+
 Route::get('/login',[CustomerController::class,'login']);
 Route::post('customer/login',[CustomerController::class,'customer_login']);
 Route::get('/register',[CustomerController::class,'register']);
 Route::get('/logout',[CustomerController::class,'logout']);
 
-Route::get('/booking',[BookingController::class,'bookings']);
 
 
 
@@ -81,6 +95,11 @@ Route::prefix('admin')->middleware(['auth', 'verified','prevent-back-history'])-
     Route::resource('/booking',BookingController::class);
     Route::get('/booking/avilable-rooms/{checkin_data}',[BookingController::class,'avilable_rooms']);
     Route::get('/booking/{id}/delete',[BookingController::class,'destroy']);
+
+
+     //Service Route
+     Route::resource('/service',ServiceController::class);
+     Route::get('/service/{id}/delete',[ServiceController::class,'destroy']);
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

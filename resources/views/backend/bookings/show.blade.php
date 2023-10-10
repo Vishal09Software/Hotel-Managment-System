@@ -24,6 +24,12 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Room Type </label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Email" disabled value="   {{ $data->room->Roomtype->title }}">
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="exampleInputEmail1">Checkin Date </label>
                                         <input type="email" class="form-control" id="exampleInputEmail1"
                                             placeholder="Email" disabled value=" {{ $data->checkin_date }}">

@@ -6,8 +6,8 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Bookings Room Table</h4>
-                            <a href="{{ url('admin/booking/create') }}">
+                            <h4 class="card-title">Services Table</h4>
+                            <a href="{{ url('admin/service/create') }}">
                                 <button class="btn btn-primary float-right" style="margin-top: -43px">Add New</button>
                             </a>
                             @if (session('success'))
@@ -21,84 +21,43 @@
                                                 #
                                             </th>
                                             <th>
-                                                Customer Name
-                                            </th>
-                                            <th>
-                                                Room No
-                                            </th>
-                                            <th>
-                                                Room Type
-                                            </th>
-                                            <th>
-                                                Checkin Date
-                                            </th>
-                                            <th>
-                                                Checkout Date
+                                                Title
                                             </th>
 
                                             <th>
-                                                Reference
-                                            </th>
-
-                                            <th>
-                                                Adults
-                                            </th>
-
-                                            <th>
-                                                Children
+                                                Images
                                             </th>
                                             <th>
                                                 Action
                                             </th>
 
-
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if ($data)
-                                            @foreach ($data as $booking)
+                                            @foreach ($data as $service)
                                                 <tr>
                                                     <td class="py-1">
-                                                        {{ $booking->id }}
+                                                        {{ $service->id }}
                                                     </td>
                                                     <td>
-                                                        {{ $booking->customer->full_name }}
-                                                    </td>
-
-                                                    <td>
-                                                        {{ $booking->room->title }}
+                                                        {{ $service->title }}
                                                     </td>
 
                                                     <td>
-                                                        {{ $booking->room->Roomtype->title }}
+                                                        <img src="{{ asset('backend/images/services/' . $service->images) }}" alt="img" width="50px" height="50px">
                                                     </td>
 
                                                     <td>
-                                                        {{ $booking->checkin_date }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $booking->checkout_date }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $booking->ref }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $booking->total_adults }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $booking->total_children }}
-                                                    </td>
-
-                                                    <td>
-                                                        <a href="{{ url('admin/booking/' . $booking->id) }}"
+                                                        <a href="{{ url('admin/service/' . $service->id) }}"
                                                             class="btn btn-info btn-sm">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                                         </a>
-                                                        {{-- <a href="{{ url('admin/booking/' . $booking->id . '/edit') }}"
+                                                        <a href="{{ url('admin/service/' . $service->id . '/edit') }}"
                                                             class="btn btn-primary btn-sm">
                                                             <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                        </a> --}}
-                                                        <a href="{{ url('admin/booking/' . $booking->id . '/delete') }}"
+                                                        </a>
+                                                        <a href="{{ url('admin/service/' . $service->id . '/delete') }}"
                                                             class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </a>

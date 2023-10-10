@@ -18,8 +18,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $data= Booking::all();
-        return view('backend.bookings.bookings',['data'=>$data]);
+        $bookings= Booking::all();
+        return view('backend.bookings.bookings',['data'=>$bookings]);
     }
 
     /**
@@ -52,6 +52,14 @@ class BookingController extends Controller
     $insert->checkout_date = $request->input('checkout_date');
     $insert->total_adults = $request->input('total_adults');
     $insert->total_children = $request->input('total_children');
+    if($request->ref == 'front')
+    {
+        $insert->ref='front';
+    }
+    else
+    {
+        $insert->ref='admin';
+    }
     $insert->save();
 
     if($request->ref == 'front')
@@ -67,7 +75,8 @@ class BookingController extends Controller
      */
     public function show(string $id)
     {
-
+        $data= Booking::find($id);
+        return view('backend.bookings.show',['data'=>$data]);
     }
 
     /**
@@ -90,7 +99,9 @@ class BookingController extends Controller
      */
     public function destroy(string $id)
     {
-
+        $delete = Booking::find($id);
+        $delete->delete();
+        return  redirect('admin/booking')->with('success' , 'Data has been delete.');
     }
 
 

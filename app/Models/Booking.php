@@ -18,6 +18,7 @@ class Booking extends Model
         'checkout_date',
         'total_adults',
         'total_children',
+        'ref',
     ];
 
     function customer(){

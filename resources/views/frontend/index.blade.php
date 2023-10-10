@@ -18,7 +18,7 @@
                                 </span>
                                 <h4>Luxury Hotel & Best Resort</h4>
                                 <h1>Enjoy a Luxury Experience</h1>
-                                <div class="butn-light mt-30 mb-30"> <a href="#" data-scroll-nav="1"><span>Rooms &
+                                <div class="butn-light mt-30 mb-30"> <a href="{{url('/rooms')}}" data-scroll-nav="1"><span>Rooms &
                                             Suites</span></a> </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                 </span>
                                 <h4>Unique Place to Relax & Enjoy</h4>
                                 <h1>The Perfect Base For You</h1>
-                                <div class="butn-light mt-30 mb-30"> <a href="#" data-scroll-nav="1"><span>Rooms &
+                                <div class="butn-light mt-30 mb-30"> <a href="{{url('/rooms')}}" data-scroll-nav="1"><span>Rooms &
                                             Suites</span></a> </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                                 </span>
                                 <h4>The Ultimate Luxury Experience</h4>
                                 <h1>Enjoy The Best Moments of Life</h1>
-                                <div class="butn-light mt-30 mb-30"> <a href="#" data-scroll-nav="1"><span>Rooms &
+                                <div class="butn-light mt-30 mb-30"> <a href="{{url('/rooms')}}" data-scroll-nav="1"><span>Rooms &
                                             Suites</span></a> </div>
                             </div>
                         </div>
@@ -139,7 +139,10 @@
                     </div>
                     <div class="col3 c6">
                         {{-- {{dd(session('data')->id)}} --}}
-                        <input type="hidden" name="customer_id" value="{{ session('data')->id }}">
+                        @if (session('data') && session('data')->id)
+                            <input type="hidden" name="customer_id" value="{{ session('data')->id }}">
+                        @endif
+
                         <input type="hidden" name="ref" value="front">
                         <button type="submit" class="btn-form1-submit">Check Now</button>
                     </div>
@@ -205,7 +208,7 @@
                             </div>
                             <div class="con">
                                 <h6>{{ $roomsType->price }}Rs. / Night</h6>
-                                <h5><a href="room-details.html">{{ $roomsType->title }}</a> </h5>
+                                <h5><a href="{{ '/room-details/' . $roomsType->id }}">{{ $roomsType->title }}</a> </h5>
                                 <div class="line"></div>
                                 <div class="row facilities">
                                     <div class="col col-md-7">
@@ -217,7 +220,8 @@
                                         </ul>
                                     </div>
                                     <div class="col col-md-5 text-end">
-                                        <div class="permalink"><a href="room-details.html">Details <i
+                                        <div class="permalink"><a
+                                                href="{{ '/room-details/' . $roomsType->id }}">Details <i
                                                     class="ti-arrow-right"></i></a></div>
                                     </div>
                                 </div>
@@ -464,91 +468,25 @@
     <!-- Services -->
     <section class="services section-padding">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">
-                    <div class="img left">
-                        <a href="restaurant.html"><img src="{{ url('frontend/img/restaurant/1.jpg') }}"
-                                alt=""></a>
+            @foreach ($services as $service)
+                <div class="row mt-3" >
+                    <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">
+                        <div class="img left">
+                            <a href="{{url('service-details/'.$service->id)}}"><img src="{{ asset('backend/images/services/' . $service->images) }}"
+                                    alt=""></a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">
-                    <div class="content">
-                        <div class="cont text-left">
-                            <div class="info">
-                                <h6>Discover</h6>
+                    <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">
+                        <div class="content">
+                            <div class="cont text-left">
+                                <h4>{{ $service->title }}</h4>
+                                <p>{{ $service->small_desc }}</p>
+                                <div class="butn-dark"> <a href="{{url('service-details/'.$service->id)}}"><span>Learn More</span></a> </div>
                             </div>
-                            <h4>The Restaurant</h4>
-                            <p>Restaurant inilla duiman at elit finibus viverra nec a lacus themo the nesudea seneoice
-                                misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion
-                                augue artine.</p>
-                            <div class="butn-dark"> <a href="restaurant.html"><span>Learn More</span></a> </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 bg-cream p-0 order2 valign animate-box" data-animate-effect="fadeInLeft">
-                    <div class="content">
-                        <div class="cont text-left">
-                            <div class="info">
-                                <h6>Experiences</h6>
-                            </div>
-                            <h4>Spa Center</h4>
-                            <p>Spa center inilla duiman at elit finibus viverra nec a lacus themo the nesudea seneoice
-                                misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion
-                                augue artine.</p>
-                            <div class="butn-dark"> <a href="spa-wellness.html"><span>Learn More</span></a> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 p-0 order1 animate-box" data-animate-effect="fadeInRight">
-                    <div class="img">
-                        <a href="spa-wellness.html"><img src="{{ url('frontend/img/spa/3.jpg') }}" alt=""></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">
-                    <div class="img left">
-                        <a href="spa-wellness.html"><img src="{{ url('frontend/img/spa/2.jpg') }}" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">
-                    <div class="content">
-                        <div class="cont text-left">
-                            <div class="info">
-                                <h6>Modern</h6>
-                            </div>
-                            <h4>Fitness Center</h4>
-                            <p>Restaurant inilla duiman at elit finibus viverra nec a lacus themo the nesudea seneoice
-                                misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion
-                                augue artine.</p>
-                            <div class="butn-dark"> <a href="spa-wellness.html"><span>Learn More</span></a> </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 bg-cream p-0 order2 valign animate-box" data-animate-effect="fadeInLeft">
-                    <div class="content">
-                        <div class="cont text-left">
-                            <div class="info">
-                                <h6>Experiences</h6>
-                            </div>
-                            <h4>The Health Club & Pool</h4>
-                            <p>The health club & pool at elit finibus viverra nec a lacus themo the nesudea seneoice
-                                misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion
-                                augue artine.</p>
-                            <div class="butn-dark"> <a href="spa-wellness.html"><span>Learn More</span></a> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 p-0 order1 animate-box" data-animate-effect="fadeInRight">
-                    <div class="img">
-                        <a href="spa-wellness.html"><img src="{{ url('frontend/img/spa/1.jpg') }}" alt=""></a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
     <!-- News -->
@@ -785,7 +723,8 @@
                     success: function(res) {
                         var _html = '';
                         $.each(res.data, function(index, row) {
-                            _html += '<option value=" ' + row.room.id + ' ">'+row.room.title+ '-' + row.roomtype.title+'</option>';
+                            _html += '<option value=" ' + row.room.id + ' ">' + row.room
+                                .title + '-' + row.roomtype.title + '</option>';
                         });
                         $(".room-list").html(_html);
                     }

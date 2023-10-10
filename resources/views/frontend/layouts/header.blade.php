@@ -42,24 +42,24 @@
             <!-- Menu -->
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown"> <a class="nav-link active dropdown-toggle" href="#"
-                            role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                            aria-expanded="false">Home</a>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Rooms & Suites
-                            <i class="ti-angle-down"></i></a>
-                        <ul class="dropdown-menu">
-                            @foreach ($roomsTypes as $roomsType)
-                                <li><a href="rooms.html" class="dropdown-item"><span>{{$roomsType->title}}</span></a></li>
-                            @endforeach
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ url('/about') }}">About</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="facilities.html">Facilities</a></li>
-                    <li class="nav-item"><a class="nav-link" href="news.html">Blogs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('rooms') ? 'active' : '' }}" href="{{ url('/rooms') }}">Rooms & Suites</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('service') ? 'active' : '' }}" href="{{ url('/service') }}">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('facilities') ? 'active' : '' }}" href="{{ url('/facilities') }}">Facilities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" href="{{ url('/contact') }}">Contact</a>
+                    </li>
 
                     @if (Session::has('customerlogin'))
                     <li class="nav-item"><a class="nav-link" href="{{url('/logout')}}">logout</a></li>
